@@ -112,5 +112,6 @@ public class Game{
             }
         }
         System.out.println("Thanks for playing!");
+        scanner.close();
     }
 }
