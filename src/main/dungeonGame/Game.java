@@ -3,7 +3,6 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Game{
-    @SuppressWarnings
     public static void main(String[] args) throws InterruptedException{
         //System objects
         Scanner scanner = new Scanner(System.in);
