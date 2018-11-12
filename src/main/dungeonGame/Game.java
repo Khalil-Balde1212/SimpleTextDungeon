@@ -9,7 +9,19 @@ public class Game{
         Random rand = new Random();
 
         //enemy variables
-        String[] enemies = {"Millenial", "Trump Supporter", "Furry"};
+        String[] enemies = { 
+                "Millenial", 
+                "Trump Supporter", 
+                "Furry", 
+                "Killer Keemstar", 
+                "Triggered Social Justice Warrior", 
+                "Obnoxious Vegan", 
+                "Donald Trump :The man himself", 
+                "Kim Jung Un", 
+                "Logan Paul", 
+                "Jake Paul", 
+                "KSI" };
+        
         int e_maxHealth = 100;
         int e_maxDamage = 25;
 
@@ -18,7 +30,7 @@ public class Game{
         int p_maxDamage = 50;
         int p_numHealthPots = 2;
         int p_healthPotVal = 20;
-        int p_healthPotDrop = 10; //percent
+        int p_healthPotDrop = 50; //percent
         
         boolean running = true;
 
@@ -45,18 +57,23 @@ public class Game{
                     case "1": //enemy
                     int p_damageDealt = rand.nextInt(p_maxDamage);
                     int e_damageDealt = rand.nextInt(e_maxDamage);
-                    
-                    e_health -= p_damageDealt;
-                    p_health -= e_damageDealt;
+
+                    if (e_enem == "Donald Trump :The man himself") {
+                        System.out.println("\t>Donald protected himself with a wall! you deal less damage 10");
+                        e_damageDealt += 10;
+                    }
+
+                    e_health -= Math.max(p_damageDealt,0);
+                    p_health -= Math.max(e_damageDealt,0);
 
                     System.out.println("\t>You strike the " + e_enem + " for " + p_damageDealt + " damage!");
                     System.out.println("\t>The" + e_enem + " strikes you for " + e_damageDealt + " damage!");
                     break;
 
                     case "2":
-                    if(p_numHealthPots > 0){
+                    if (p_numHealthPots > 0) {
                         p_health += p_healthPotVal;
-                        p_numHealthPots --;
+                        p_numHealthPots--;
                         System.out.println("\t> You drink a health potion for " + p_healthPotVal + " health!");
                         System.out.println("\t you now have " + p_health + " health");
                         System.out.println("\t you now have " + p_numHealthPots + " health potions");
@@ -75,13 +92,19 @@ public class Game{
                 }
             }
 
-            if(p_health <= 0){
+            if (p_health <= 0) {
                 System.out.println("You are a loser xd");
                 break;
             }
+            
             System.out.println("---------------------------------------------------------------------------------------");
             System.out.println(" # " + e_enem + " was defeated! # ");
             System.out.println("You have " + p_health + " HP left");
+            if (e_enem == "Donald Trump :The man himself") {
+                p_numHealthPots++;
+                System.out.println(" # Donald dropped a health potion # ");
+                System.out.println(" # You now have " + p_numHealthPots + " health potions! # ");
+            }
             if(rand.nextInt(100) < p_healthPotDrop){
                 p_numHealthPots ++;
                 System.out.println(" # You found a potion! # ");
